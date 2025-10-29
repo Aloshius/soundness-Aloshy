@@ -85,7 +85,7 @@ enum ProvingSystem {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 enum Game {
     EightQueens,
-    TicTacToe,
+    KnightsTour,
 }
 
 impl FromStr for Game {
@@ -93,9 +93,9 @@ impl FromStr for Game {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s.to_lowercase().as_str() {
-            "tic-tac-toe" | "tictactoe" => Ok(Game::TicTacToe),
+            "kmightstour" | "knights_tour" | "KnightsTour" => Ok(Game::KnightsTour),
             "8-queens" | "8queens" | "eight-queens" | "eightqueens" => Ok(Game::EightQueens),
-            _ => Err(format!("Invalid game: {}. Valid games are: tic-tac-toe, tictactoe, 8-queens, 8queens, eight-queens, eightqueens", s)),
+            _ => Err(format!("Invalid game: {}. Valid games are: kmightstour, knights_tour. KnightsTour, 8-queens, 8queens, eight-queens, eightqueens", s)),
         }
     }
 }
@@ -104,7 +104,7 @@ impl std::fmt::Display for Game {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Game::EightQueens => write!(f, "8queens"),
-            Game::TicTacToe => write!(f, "tictactoe"),
+            Game::KnightsTour => write!(f, "knights_tour"),
         }
     }
 }
